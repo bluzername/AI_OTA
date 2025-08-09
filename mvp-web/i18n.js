@@ -6,7 +6,8 @@
       pace: 'Pace', 'pace.easy': 'Easy', 'pace.balanced': 'Balanced', 'pace.packed': 'Packed',
       budget: 'Budget', 'budget.low': 'Low', 'budget.mid': 'Mid', 'budget.high': 'High',
       generate: 'Generate Itinerary', reset: 'Reset', book: 'Book', exportJson: 'Export JSON', exportIcs: 'Export ICS',
-      disclaimer: 'Data is sample only. Walking times are estimates.', day: 'Day', flights: 'Flights', stays: 'Stays'
+      disclaimer: 'Data is sample only. Walking times are estimates.', day: 'Day', flights: 'Flights', stays: 'Stays',
+      start: 'Start', noResults: 'No results matched your filters.', showingPopular: 'Showing popular picks instead.'
     },
     he: {
       city: 'עיר', startDate: 'תאריך התחלה', endDate: 'תאריך סיום', interests: 'תחומי עניין',
@@ -14,9 +15,19 @@
       pace: 'קצב', 'pace.easy': 'קל', 'pace.balanced': 'מאוזן', 'pace.packed': 'צפוף',
       budget: 'תקציב', 'budget.low': 'נמוך', 'budget.mid': 'בינוני', 'budget.high': 'גבוה',
       generate: 'בנה מסלול', reset: 'איפוס', book: 'הזמנה', exportJson: 'ייצוא JSON', exportIcs: 'ייצוא ICS',
-      disclaimer: 'הנתונים לדוגמה בלבד. זמני ההליכה משוערים.', day: 'יום', flights: 'טיסות', stays: 'לינה'
+      disclaimer: 'הנתונים לדוגמה בלבד. זמני ההליכה משוערים.', day: 'יום', flights: 'טיסות', stays: 'לינה',
+      start: 'התחלה', noResults: 'אין תוצאות שתואמות לסינון.', showingPopular: 'מציגים אפשרויות פופולריות במקום.'
     }
   };
+
+  function currentLocale(){
+    return document.documentElement.getAttribute('lang') || 'en';
+  }
+
+  function t(key){
+    const loc = currentLocale();
+    return (STRINGS[loc] && STRINGS[loc][key]) || (STRINGS.en && STRINGS.en[key]) || key;
+  }
 
   function applyLocale(locale){
     const dict = STRINGS[locale] || STRINGS.en;
@@ -42,6 +53,6 @@
     });
   }
 
-  window.I18N = { applyLocale };
+  window.I18N = { applyLocale, t };
   document.addEventListener('DOMContentLoaded', initLocale);
 })();
