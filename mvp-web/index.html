@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" data-locale="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mindtrip Lite — Planner (MVP)</title>
+  <link href="https://api.maptiler.com/maps/streets/style.css?key=Get_Your_Own_API_Key" rel="stylesheet" />
+  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">Mindtrip Lite</div>
+    <div class="header-actions">
+      <button id="localeToggle" class="btn btn-light" title="Switch language">HE</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="controls">
+      <div class="control-group">
+        <label for="citySelect" data-i18n="city">City</label>
+        <select id="citySelect">
+          <option value="kyoto">Kyoto</option>
+          <option value="osaka">Osaka</option>
+        </select>
+      </div>
+      <div class="control-row">
+        <div class="control-group">
+          <label for="startDate" data-i18n="startDate">Start Date</label>
+          <input id="startDate" type="date" />
+        </div>
+        <div class="control-group">
+          <label for="endDate" data-i18n="endDate">End Date</label>
+          <input id="endDate" type="date" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label data-i18n="interests">Interests</label>
+        <div class="chips" id="interests">
+          <label><input type="checkbox" value="culture" checked /> <span data-i18n="interest.culture">Culture</span></label>
+          <label><input type="checkbox" value="food" checked /> <span data-i18n="interest.food">Food</span></label>
+          <label><input type="checkbox" value="nature" checked /> <span data-i18n="interest.nature">Nature</span></label>
+          <label><input type="checkbox" value="shopping" /> <span data-i18n="interest.shopping">Shopping</span></label>
+          <label><input type="checkbox" value="kids" /> <span data-i18n="interest.kids">Kids</span></label>
+        </div>
+      </div>
+      <div class="control-row">
+        <div class="control-group">
+          <label for="pace" data-i18n="pace">Pace</label>
+          <select id="pace">
+            <option value="easy" selected data-i18n="pace.easy">Easy</option>
+            <option value="balanced" data-i18n="pace.balanced">Balanced</option>
+            <option value="packed" data-i18n="pace.packed">Packed</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="budget" data-i18n="budget">Budget</label>
+          <select id="budget">
+            <option value="low" data-i18n="budget.low">Low</option>
+            <option value="mid" selected data-i18n="budget.mid">Mid</option>
+            <option value="high" data-i18n="budget.high">High</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-actions">
+        <button id="generateBtn" class="btn btn-primary" data-i18n="generate">Generate Itinerary</button>
+        <button id="resetBtn" class="btn" data-i18n="reset">Reset</button>
+      </div>
+      <div class="book-links" id="bookLinks" hidden>
+        <span data-i18n="book">Book:</span>
+        <a id="bookFlights" target="_blank" rel="noopener">Flights</a>
+        <span>·</span>
+        <a id="bookStays" target="_blank" rel="noopener">Stays</a>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="timeline" id="timeline"></div>
+      <div class="map-wrap">
+        <div id="map" class="map"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="left">
+      <button id="exportJsonBtn" class="btn" disabled data-i18n="exportJson">Export JSON</button>
+      <button id="exportIcsBtn" class="btn" disabled data-i18n="exportIcs">Export ICS</button>
+    </div>
+    <div class="right">
+      <span class="hint" data-i18n="disclaimer">Data is sample only. Walking times are estimates.</span>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+  <script src="./i18n.js"></script>
+  <script src="./map.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
