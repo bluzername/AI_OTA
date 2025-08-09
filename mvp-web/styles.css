@@ -44,3 +44,11 @@ select,input[type="date"]{width:100%;padding:10px 12px;border-radius:8px;border:
 html[dir="rtl"] body{direction:rtl}
 html[dir="rtl"] .app-main{grid-template-columns:1fr 340px}
 html[dir="rtl"] .workspace{grid-template-columns:1fr 1fr}
+
+/* Responsive */
+@media (max-width: 900px){
+  .app-main{grid-template-columns:1fr;padding:12px}
+  .workspace{grid-template-columns:1fr;height:auto}
+  .map{height:60vh}
+  .control-row{flex-direction:column}
+}

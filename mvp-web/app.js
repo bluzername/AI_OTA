@@ -22,7 +22,10 @@
   }
 
   function daysBetween(a, b){
-    const ms = (new Date(b)).setHours(0,0,0,0) - (new Date(a)).setHours(0,0,0,0);
+    const start = new Date(a);
+    const end = new Date(b);
+    if (end < start) return 1;
+    const ms = end.setHours(0,0,0,0) - start.setHours(0,0,0,0);
     return Math.max(1, Math.round(ms / (1000*60*60*24)) + 1);
   }
 
@@ -105,7 +108,7 @@
       const dayDiv = document.createElement('div');
       dayDiv.className = 'day';
       const title = document.createElement('h3');
-      title.textContent = (locale === 'he' ? 'יום' : 'Day') + ' ' + (idx+1);
+      title.textContent = `${(window.I18N?.t('day')) || (locale === 'he' ? 'יום' : 'Day')} ${idx+1}`;
       dayDiv.appendChild(title);
       items.forEach((it, i) => {
         const item = document.createElement('div');
@@ -121,7 +124,7 @@
           const km = haversineKm({lat:prev.lat,lng:prev.lng}, {lat:it.lat,lng:it.lng});
           m.textContent = `${walkingMinutes(km)} min walk · ${km.toFixed(1)} km`;
         } else {
-          m.textContent = 'Start';
+          m.textContent = window.I18N?.t('start') || 'Start';
         }
         left.appendChild(t); left.appendChild(m);
         const right = document.createElement('div');
@@ -140,9 +143,9 @@
   function setBookingLinks(cityName){
     const q = encodeURIComponent(cityName);
     bookFlights.href = `https://www.google.com/travel/flights?q=${q}`;
-    bookFlights.textContent = document.documentElement.lang === 'he' ? 'טיסות' : 'Flights';
+    bookFlights.textContent = window.I18N?.t('flights') || 'Flights';
     bookStays.href = `https://www.booking.com/searchresults.html?ss=${q}`;
-    bookStays.textContent = document.documentElement.lang === 'he' ? 'לינה' : 'Stays';
+    bookStays.textContent = window.I18N?.t('stays') || 'Stays';
     bookLinks.hidden = false;
   }
 
@@ -186,7 +189,18 @@
     const pace = paceSelect.value;
 
     const numDays = daysBetween(start, end);
-    const pois = filterByInterests(city.pois, interestSelected);
+    let pois = filterByInterests(city.pois, interestSelected);
+
+    if (pois.length === 0){
+      // Show friendly empty state and fallback to popular picks
+      const notice = document.createElement('div');
+      notice.className = 'hint';
+      notice.textContent = `${window.I18N?.t('noResults') || 'No results.'} ${(window.I18N?.t('showingPopular')||'Showing popular picks instead.')}`;
+      timelineEl.innerHTML = '';
+      timelineEl.appendChild(notice);
+      pois = city.pois.slice().sort((a,b)=> (b.rating||0) - (a.rating||0));
+    }
+
     const perDay = pickPerDay(pois, numDays, pace);
 
     currentPlan = { city: cityKey, startDate: start, endDate: end, days: perDay };
