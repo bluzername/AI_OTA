@@ -1,0 +1,31 @@
+{
+  "cities": {
+    "kyoto": {
+      "displayName": "Kyoto",
+      "center": { "lat": 35.0116, "lng": 135.7681 },
+      "pois": [
+        {"id":"kyoto_fushimi","name":"Fushimi Inari Taisha","lat":35.0260,"lng":135.7808,"category":"culture","rating":4.8,"kidFriendly":true},
+        {"id":"kyoto_kiyomizu","name":"Kiyomizu-dera","lat":34.9949,"lng":135.7850,"category":"culture","rating":4.7,"kidFriendly":true},
+        {"id":"kyoto_nishiki","name":"Nishiki Market","lat":35.0054,"lng":135.7652,"category":"food","rating":4.5,"kidFriendly":true},
+        {"id":"kyoto_arashiyama","name":"Arashiyama Bamboo Grove","lat":35.0174,"lng":135.6713,"category":"nature","rating":4.6,"kidFriendly":true},
+        {"id":"kyoto_kinkakuji","name":"Kinkaku-ji (Golden Pavilion)","lat":35.0394,"lng":135.7292,"category":"culture","rating":4.7,"kidFriendly":true},
+        {"id":"kyoto_gion","name":"Gion District","lat":35.0037,"lng":135.7763,"category":"culture","rating":4.4,"kidFriendly":true},
+        {"id":"kyoto_nijo","name":"Nijō Castle","lat":35.0142,"lng":135.7481,"category":"culture","rating":4.5,"kidFriendly":true},
+        {"id":"kyoto_railway","name":"Kyoto Railway Museum","lat":34.9896,"lng":135.7364,"category":"kids","rating":4.6,"kidFriendly":true}
+      ]
+    },
+    "osaka": {
+      "displayName": "Osaka",
+      "center": { "lat": 34.6937, "lng": 135.5023 },
+      "pois": [
+        {"id":"osaka_castle","name":"Osaka Castle","lat":34.6873,"lng":135.5259,"category":"culture","rating":4.6,"kidFriendly":true},
+        {"id":"osaka_dotonbori","name":"Dotonbori","lat":34.6687,"lng":135.5011,"category":"food","rating":4.5,"kidFriendly":true},
+        {"id":"osaka_aquarium","name":"Osaka Aquarium Kaiyukan","lat":34.6545,"lng":135.4289,"category":"kids","rating":4.6,"kidFriendly":true},
+        {"id":"osaka_shinsaibashi","name":"Shinsaibashi Shopping Street","lat":34.6721,"lng":135.5015,"category":"shopping","rating":4.3,"kidFriendly":true},
+        {"id":"osaka_umeda","name":"Umeda Sky Building","lat":34.7055,"lng":135.4892,"category":"culture","rating":4.4,"kidFriendly":true},
+        {"id":"osaka_universal","name":"Universal Studios Japan","lat":34.6654,"lng":135.4323,"category":"kids","rating":4.7,"kidFriendly":true},
+        {"id":"osaka_sumiyoshi","name":"Sumiyoshi Taisha","lat":34.6125,"lng":135.4897,"category":"culture","rating":4.5,"kidFriendly":true}
+      ]
+    }
+  }
+}
