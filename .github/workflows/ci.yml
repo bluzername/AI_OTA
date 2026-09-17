@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # node --check only inspects its first argument, so loop over the files.
+      - name: JS syntax check
+        run: |
+          for f in mvp-web/*.js; do
+            node --check "$f"
+          done
+
+      - name: JSON syntax check
+        run: python3 -m json.tool mvp-web/data/pois.json > /dev/null
+
+      - name: Validate POI data
+        run: python3 scripts/validate_pois.py
